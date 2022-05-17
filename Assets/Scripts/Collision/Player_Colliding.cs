@@ -35,11 +35,14 @@ public class Player_Colliding : MonoBehaviour
 
         if (collision.collider.name == "TextPopUp")
             findTheKeyText.enabled = true;
-        
+
         if (collision.gameObject.CompareTag("EnemyHead"))
+        {
             Destroy(collision.transform.parent.gameObject);
-        
-        
+            Debug.Log("GameOBject is dead");
+        }
+
+        Debug.Log("Now Collding  " + collision.collider.name);
     }
 
   
@@ -50,4 +53,6 @@ public class Player_Colliding : MonoBehaviour
             findTheKeyText.enabled = false;
         
     }
+
+   
 }

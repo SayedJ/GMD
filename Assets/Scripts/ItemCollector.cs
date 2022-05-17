@@ -1,20 +1,44 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemCollector : MonoBehaviour
 {
-    private int coins = 0;
+    private int golds = 0;
     [SerializeField] private Text coinsText;
+    [SerializeField]
+    private GameObject wall;
+    [SerializeField]
+    private GameObject keypad;
+
+
+   
+
     private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Coin"))
+    { 
+        if (other.gameObject.CompareTag("Gold"))
         {
             Destroy(other.gameObject);
-            coins++;
-            coinsText.text = "Coins: " + coins;
+            golds++;
+            coinsText.text = "x " + golds;
+            Destroy(wall, 1.0f);
+            keypad.transform.Translate(Vector3.back * 20.0f * Time.deltaTime);
+            
+
+        }
+        
+    }
+    
+    
+
+    void MoveDoor()
+    {
+        if (golds > 2)
+        {
+            Destroy(wall, 1.0f);
         }
     }
 }
